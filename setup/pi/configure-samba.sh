@@ -28,6 +28,11 @@ then
 
   if [ -d /var/lib/samba ]
   then
+    if ! findmnt --mountpoint /mutable
+    then
+        mount /mutable
+    fi
+
     mkdir -p /mutable/varlib
     mv /var/lib/samba /mutable/varlib
     ln -s /mutable/varlib/samba /var/lib/samba
